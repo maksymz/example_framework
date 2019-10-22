@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CSS: float</title>
+    <meta name="description" content="CSS: float">
+    <meta name="author" content="Maksym Zaporozhets">
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+</head>
+<body class="css-float">
+<div class="wrapper">
+    <header>
+        <nav>
+            <ul>
+                <?php for ($i = 0; $i < 5; $i++) : ?>
+                    <?php if ($menu[$i]): ?>
+                        <li>
+                            <a href="javascript:void(0);"><?= $menu[$i]; ?></a>
+                        </li>
+                    <?php endif; ?>
+                <?php endfor; ?>
+            </ul>
+        </nav>
+    </header>
+    <div class="main">
+        <div class="left">
+            <p>Left</p>
+            <p>Left</p>
+            <p>Left</p>
+        </div>
+        <div class="right">
+            <p>Right</p>
+            <p>Right</p>
+            <p>Right</p>
+            <p>Right</p>
+            <p>Right</p>
+        </div>
+    </div>
+    <footer>
+        <span>Footer</span>
+    </footer>
+</div>
+</body>
+</html>

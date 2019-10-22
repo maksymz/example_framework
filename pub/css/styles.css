@@ -1,0 +1,99 @@
+/* General styles */
+.wrapper {
+    border: 1px solid black;
+    margin: 0 auto;
+    width: 1200px;
+}
+
+header,
+footer {
+    height: 200px;
+}
+
+/*header {*/
+/*    background-color: yellow;*/
+/*}*/
+
+/*.left {*/
+/*    background-color: red;*/
+/*}*/
+
+/*.right {*/
+/*    background-color: blue;*/
+/*}*/
+
+footer {
+    /*background-color: green;*/
+    margin-top: 50px;
+}
+
+/* CSS: float */
+.css-float .left,
+.css-float .right {
+    float: left;
+    width: 50%;
+}
+
+/* CSS: float fixed */
+.clear {
+    clear: both;
+}
+
+/* CSS: inline-block */
+.css-inline-block .left,
+.css-inline-block .right {
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+}
+
+.css-inline-block .main {
+    font-size: 0;
+}
+
+.css-inline-block .left,
+.css-inline-block .right {
+    font-size: initial;
+}
+
+/* CSS: flex */
+.css-flex .main {
+    display: flex;
+}
+
+.css-flex .main .left,
+.css-flex .main .right {
+    flex-grow: 1;
+}
+
+/* CSS: margin and padding */
+/* removing user-agent styles */
+.margin-and-padding p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-bottom: 30px;
+    /*margin: 20px 0 30px;*/
+    padding-left: 20px;
+}
+
+.margin-and-padding p:last-child {
+    margin-bottom: 0;
+}
+
+/* CSS: margin for columns */
+.margin-for-columns .left,
+.margin-for-columns .right {
+    float: left;
+    width: 40%;
+}
+
+.margin-for-columns .left {
+    margin-right: 20%;
+}
+
+/* CSS: flex-for-spacing */
+.flex-for-spacing nav {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-around;
+}
