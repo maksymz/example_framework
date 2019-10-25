@@ -6,11 +6,20 @@
     <title>CSS: float</title>
     <meta name="description" content="CSS: float">
     <meta name="author" content="Maksym Zaporozhets">
-    <link rel="stylesheet" href="css/styles.css?v=1.0">
+    <link rel="stylesheet" href="css/styles.min.css?v=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body class="css-float">
 <div class="wrapper">
     <header>
+        <div class="logo">
+            <img src="/images/logo.jpg" alt="DV Campus">
+        </div>
+        <form id="search-form" method="post" action="/">
+            <label for="term">Search the website</label>
+            <input name="term" id="term" placeholder="Search" />
+            <button type="submit">Submit</button>
+        </form>
         <nav>
             <ul>
                 <?php for ($i = 0; $i < 5; $i++) : ?>
@@ -23,22 +32,105 @@
             </ul>
         </nav>
     </header>
-    <div class="main">
-        <div class="left">
-            <p>Left</p>
-            <p>Left</p>
-            <p>Left</p>
-        </div>
-        <div class="right">
-            <p>Right</p>
-            <p>Right</p>
-            <p>Right</p>
-            <p>Right</p>
-            <p>Right</p>
-        </div>
-    </div>
+    <main class="main">
+        <section id="products" aria-label="Products list">
+            <h1>Products list</h1>
+            <ul>
+                <li>
+                    <article>
+                        <img src="/images/galaxy_note_10.jpg" alt="Galaxy Note 10" />
+                        <h2>
+                            <a href="javascript:void(0);">Galaxy Note 10</a>
+                        </h2>
+                        <span class="price">99 999.99</span>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <img src="/images/iphone_11.jpg" alt="iPhone 11" />
+                        <h2>
+                            <a href="javascript:void(0);">iPhone 11</a>
+                        </h2>
+                        <span class="price">99 999.99</span>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <img src="/images/galaxy_note_10.jpg" alt="Galaxy Note 10" />
+                        <h2>
+                            <a href="javascript:void(0);">Galaxy Note 10</a>
+                        </h2>
+                        <span class="price">99 999.99</span>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <img src="/images/iphone_11.jpg" alt="iPhone 11" />
+                        <h2>
+                            <a href="javascript:void(0);">iPhone 11</a>
+                        </h2>
+                        <span class="price">99 999.99</span>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <img src="/images/galaxy_note_10.jpg" alt="Galaxy Note 10" />
+                        <h2>
+                            <a href="javascript:void(0);">Galaxy Note 10</a>
+                        </h2>
+                        <span class="price">99 999.99</span>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <img src="/images/iphone_11.jpg" alt="iPhone 11" />
+                        <h2>
+                            <a href="javascript:void(0);">iPhone 11</a>
+                        </h2>
+                        <span class="price">99 999.99</span>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <img src="/images/galaxy_note_10.jpg" alt="Galaxy Note 10" />
+                        <h2>
+                            <a href="javascript:void(0);">Galaxy Note 10</a>
+                        </h2>
+                        <span class="price">99 999.99</span>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <img src="/images/iphone_11.jpg" alt="iPhone 11" />
+                        <h2>
+                            <a href="javascript:void(0);">iPhone 11</a>
+                        </h2>
+                        <span class="price">99 999.99</span>
+                    </article>
+                </li>
+            </ul>
+        </section>
+        <section id="contact" aria-label="Contact Us">
+            <form method="post" action="/">
+                <h2>Contact Us</h2>
+                <div class="field">
+                    <label for="contact-name">Your name:</label>
+                    <input type="text" id="contact-name" placeholder="John Doe" />
+                </div>
+                <div class="field">
+                    <label for="contact-email">Your email:</label>
+                    <input type="email" id="contact-email" placeholder="email@example.com" />
+                </div>
+                <div class="field">
+                    <label for="contact-question">Question:</label>
+                    <textarea id="contact-question" rows="4" placeholder="Please, enter your question"></textarea>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
     <footer>
-        <span>Footer</span>
+        <span>Copyright by DV Campus</span>
     </footer>
 </div>
 </body>

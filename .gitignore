@@ -1,4 +1,10 @@
 .idea/
+/node_modules/
+
+/pub/css/*
+!/pub/css/.gitkeep
+/pub/images/*
+!/pub/images/.gitkeep
 
 /var/*
 !/var/log/
