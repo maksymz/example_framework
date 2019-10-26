@@ -1,0 +1,8 @@
+<?php /** @var \Catalog\Block\Category $this */ ?>
+<h1>
+    <?= $this->getCategoryName() ?>
+</h1>
+<?= $this->render(\Catalog\Block\ProductList::class) ?>
+<section id="recent-products">
+    <?= 'output 10 recent viewed items' ?>
+</section>

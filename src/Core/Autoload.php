@@ -21,7 +21,7 @@ class Autoload
 
         require_once $filePath;
 
-        if (!class_exists($className)) {
+        if (!class_exists($className) && !interface_exists($className)) {
             throw new \RuntimeException("Class $className not found in file $filePath");
         }
     }

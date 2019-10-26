@@ -8,16 +8,21 @@ spl_autoload_register([$autoloader, 'load']);
 $env = new \Core\Env();
 $env->initEnvironment();
 
-$menu = [
-    'Home',
-    'Shop',
-    'Blog'
-];
+switch ($_SERVER['REQUEST_URI']) {
+    case '/contact-us':
+        $contentBlock = \ContactUs\Block\ContactForm::class;
+        break;
+    case '/shop':
+        $contentBlock = \Catalog\Block\Category::class;
+        break;
+    default:
+        $foo = false;
+        break;
+}
 
-ob_start();
-require 'template.phtml';
-$html = ob_get_clean();
-
+$view = new \Core\View();
+$view->setContentBlock($contentBlock);
+$html = $view->renderContent();
 
 header('Content-Type: text/html;');
 

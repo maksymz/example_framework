@@ -1,0 +1,42 @@
+<?php /** @var \Core\Layout $this */ ?>
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CSS: float</title>
+    <meta name="description" content="Example PHP framework">
+    <meta name="author" content="Maksym Zaporozhets">
+    <link rel="stylesheet" href="/css/styles.min.css?v=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class="">
+<div class="wrapper">
+    <header>
+        <div class="logo">
+            <img src="/images/logo.jpg" alt="DV Campus">
+        </div>
+        <form id="search-form" method="post" action="/">
+            <label for="term">Search the website</label>
+            <input name="term" id="term" placeholder="Search" />
+            <button type="submit">Submit</button>
+        </form>
+        <nav>
+            <ul>
+                <?php foreach ($this->getMenuItems() as $link => $title) : ?>
+                    <li>
+                        <a href="<?= $link ?>"><?= $title ?></a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </nav>
+    </header>
+    <main class="main">
+        <?= $this->renderContent() ?>
+    </main>
+    <footer>
+        <span>Copyright by DV Campus</span>
+    </footer>
+</div>
+</body>
+</html>

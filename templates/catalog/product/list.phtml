@@ -1,0 +1,19 @@
+<?php /** @var \Catalog\Block\ProductList $this */ ?>
+<section id="products" aria-label="Products list">
+    <h1>Products list</h1>
+    <ul>
+        <?php /** @var \Catalog\Model\Product $product */
+            foreach ($this->getProducts() as $product) :
+        ?>
+            <li>
+                <article>
+                    <img src="<?= $product->getImage() ?>" alt="<?= $product->getName() ?>" />
+                    <h2>
+                        <a href="javascript:void(0);"><?= $product->getName() ?></a>
+                    </h2>
+                    <span class="price"><?= $product->getPrice() ?></span>
+                </article>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</section>
