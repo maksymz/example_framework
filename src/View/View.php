@@ -1,10 +1,25 @@
 <?php
 declare(strict_types=1);
 
-namespace Core;
+namespace View;
 
 class View
 {
+    /**
+     * @var \Core\DIContainer $container
+     */
+    private $container;
+
+    /**
+     * View constructor.
+     * @param \Core\DIContainer $container
+     */
+    public function __construct(
+        \Core\DIContainer $container
+    ) {
+        $this->container = $container;
+    }
+
     /**
      * @var string
      */
@@ -25,7 +40,7 @@ class View
     public function render(string $blockClass): string
     {
         /** @var BlockInterface $block */
-        $block = new $blockClass;
+        $block = $this->container->get($blockClass);
         return $block->toHtml();
     }
 
@@ -34,7 +49,7 @@ class View
      */
     public function renderContent(): string
     {
-        $layout = new Layout();
+        $layout = $this->container->get(Layout::class);
         $layout->setContentBlock($this->contentBlockClass);
         return $layout->toHtml();
     }

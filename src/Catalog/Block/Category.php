@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Catalog\Block;
 
-use Core\AbstractBlock;
+use View\AbstractBlock;
 
 class Category extends AbstractBlock
 {

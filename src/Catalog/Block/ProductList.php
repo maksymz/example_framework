@@ -3,17 +3,34 @@ declare(strict_types=1);
 
 namespace Catalog\Block;
 
-use Catalog\Repository\Product;
-use Core\AbstractBlock;
+use Catalog\Repository\Product as ProductRepository;
 
-class ProductList extends AbstractBlock
+class ProductList extends \View\AbstractBlock
 {
     /**
-     * @return Product
+     * @var \Catalog\Repository\Product
      */
-    public function getProducts(): Product
+    private $productRepository;
+
+    /**
+     * ProductList constructor.
+     * @param \View\View $view
+     * @param \Catalog\Repository\Product $productRepository
+     */
+    public function __construct(
+        \View\View $view,
+        \Catalog\Repository\Product $productRepository
+    ) {
+        parent::__construct($view);
+        $this->productRepository = $productRepository;
+    }
+
+    /**
+     * @return ProductRepository
+     */
+    public function getProducts(): ProductRepository
     {
-        return new Product();
+        return $this->productRepository;
     }
 
     /**

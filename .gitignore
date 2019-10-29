@@ -10,3 +10,5 @@
 !/var/log/
 /var/log/*
 !/var/log/.gitkeep
+
+/vendor/

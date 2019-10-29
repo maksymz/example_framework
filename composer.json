@@ -1,0 +1,13 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Catalog\\": "src/Catalog/",
+      "ContactUs\\": "src/ContactUs/",
+      "Core\\": "src/Core/",
+      "Cms\\": "src/Cms/",
+      "Filesystem\\": "src/Filesystem/",
+      "Http\\": "src/Http/",
+      "View\\": "src/View/"
+    }
+  }
+}

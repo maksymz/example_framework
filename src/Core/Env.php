@@ -3,10 +3,22 @@ declare(strict_types=1);
 
 namespace Core;
 
-use Filesystem\FileHandler;
-
 class Env
 {
+    /**
+     * @var \Filesystem\FileHandler
+     */
+    private $fileHandler;
+
+    /**
+     * Env constructor.
+     * @param \Filesystem\FileHandler $fileHandler
+     */
+    public function __construct(\Filesystem\FileHandler $fileHandler)
+    {
+        $this->fileHandler = $fileHandler;
+    }
+
     /**
      * @return void
      */
@@ -14,9 +26,7 @@ class Env
     {
         error_reporting(E_ALL & ~E_DEPRECATED);
 
-        $fileHandler = new FileHandler();
-
-        $generator = $fileHandler->readFile('./../.env');
+        $generator = $this->fileHandler->readFile('./../.env');
 
         while ($line = $generator->current()) {
             putenv($line);

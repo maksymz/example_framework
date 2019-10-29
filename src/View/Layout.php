@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Core;
+namespace View;
 
 class Layout extends AbstractBlock
 {
@@ -15,8 +15,7 @@ class Layout extends AbstractBlock
      */
     public function renderContent(): string
     {
-        $view = new View();
-        return $view->render($this->contentBlockClass);
+        return $this->view->render($this->contentBlockClass);
     }
 
     /**

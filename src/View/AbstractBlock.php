@@ -1,10 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Core;
+namespace View;
 
 abstract class AbstractBlock implements BlockInterface
 {
+    /**
+     * @var View $view
+     */
+    protected $view;
+
+    /**
+     * AbstractBlock constructor.
+     * @param View $view
+     */
+    public function __construct(\View\View $view)
+    {
+        $this->view = $view;
+    }
+
     /**
      * @inheritDoc
      */
@@ -21,8 +35,7 @@ abstract class AbstractBlock implements BlockInterface
      */
     public function render(string $className): string
     {
-        $view = new View();
-        return $view->render($className);
+        return $this->view->render($className);
     }
 
     /**

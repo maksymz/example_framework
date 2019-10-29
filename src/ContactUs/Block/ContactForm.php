@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace ContactUs\Block;
 
-use Core\AbstractBlock;
+use View\AbstractBlock;
 
 class ContactForm extends AbstractBlock
 {
