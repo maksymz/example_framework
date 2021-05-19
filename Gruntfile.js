@@ -36,7 +36,7 @@ module.exports = function(grunt) {
                     map: true,
                     processors: [
                         require('autoprefixer')({
-                            overrideBrowserslist: ['last 2 versions',  'ie 11']
+                            overrideBrowserslist: ['last 2 versions']
                         })
                     ]
                 },
@@ -48,7 +48,7 @@ module.exports = function(grunt) {
                 options: {
                     processors: [
                         require('autoprefixer')({
-                            overrideBrowserslist: ['last 2 versions',  'ie 11']
+                            overrideBrowserslist: ['last 2 versions']
                         }),
                         require('cssnano')()
                     ]
@@ -88,7 +88,7 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-postcss');
+    grunt.loadNpmTasks('@lodder/grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
