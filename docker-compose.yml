@@ -1,55 +1,64 @@
 # SSL certificates for development
-# $ mkcert php-framework.local
+# $ mkcert -cert-file=php-framework.local.pem -key-file=php-framework.local-key.pem php-framework.local
 #
-# DEVELOPMENT:
-# $ docker-compose -f docker-compose.yml -f docker-compose-dev.yml up -d
-#
-# PRODUCTION:
+# Start composition:
 # $ docker-compose up -d
 #
-# MacOS (development only)
-# docker-sync-stack start
+# For MacOS users (development only)
+# $ docker-sync-stack start
 version: '3.7'
 services:
   php-apache:
     container_name: php-framework.local
-    build:
-      context: .
-      dockerfile: docker/Dockerfile
-      args:
-        # needed for the build stage
-        # Install memcached inside container if needed. Better to use external Memcached container and only have
-        # php extension to connect to it
-        - MEMCACHED=0
+    # EXECUTION_ENVIRONMENT - 'development' or 'production'
+    image: defaultvalue/php:7.3-${EXECUTION_ENVIRONMENT}
+    # In case you need your own Dockerfile. Dockerfile example:
+    # ARG EXECUTION_ENVIRONMENT
+    # FROM defaultvalue/php:7.3-${EXECUTION_ENVIRONMENT}
+#    build:
+#      context: .
+#      dockerfile: docker/Dockerfile
+#      args:
+#        - EXECUTION_ENVIRONMENT=${EXECUTION_ENVIRONMENT}
+    user: docker:docker
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=0
     restart: always
     labels:
-      # - traefik.enable=false
-      - traefik.http.frontend.rule=Host:php-framework.local
-      - traefik.http.frontend.entryPoints=http
-      - traefik.https.frontend.rule=Host:php-framework.local
-      - traefik.https.frontend.entryPoints=https
-      - traefik.https.protocol=https
-      - traefik.https.port=443
+      - traefik.enable=true
+      # HTTP
+      - traefik.http.routers.php-framework-local-http.rule=Host(`php-framework.local`)
+      - traefik.http.routers.php-framework-local-http.entrypoints=http
+      - traefik.http.routers.php-framework-local-http.service=php-framework-local-http
+      - traefik.http.services.php-framework-local-http.loadbalancer.server.port=80
+      - traefik.http.services.php-framework-local-http.loadbalancer.server.scheme=http
+      # HTTPS
+      - traefik.http.routers.php-framework-local-https.rule=Host(`php-framework.local`)
+      - traefik.http.routers.php-framework-local-https.entrypoints=https
+      - traefik.http.routers.php-framework-local-https.tls=true
+      - traefik.http.routers.php-framework-local-https.service=php-framework-local-https
+      - traefik.http.services.php-framework-local-https.loadbalancer.server.port=443
+      - traefik.http.services.php-framework-local-https.loadbalancer.server.scheme=https
     # Must add extra_hosts to be written to /etc/hosts - otherwise containerized application can not curl itself
     extra_hosts:
       - "php-framework.local:127.0.0.1"
-#    links:
-#      - memcached
+      # Required for xDebug on Linux hosts till docker.host.internal is not available by default - https://github.com/docker/libnetwork/pull/2348/files
+      - "host.docker.internal:172.17.0.1"
     external_links:
       - mysql57:mysql
-#    networks:
-#      - reverse-proxy
+      - mailhog
     network_mode: bridge
+    environment:
+      - COMPOSER_VERSION=2
+      # Must be set to some of the domains for xdebug to work. Should have server configured in
+      # Preferences > Language and Frameworks > PHP > Servers
+      # Or just run the project with the same domain and debug enabled in the browser
+      - PHP_IDE_CONFIG=serverName=php-framework.local
+      # Go is required to catch emails with Mailhog and mhsendmail (Sendmail replacement)
+      - ADDITIONAL_PATH=/usr/local/go/bin
     volumes:
       - .:/var/www/html
-      - /misc/share/ssl:/certs
+      - ${SSL_CERTIFICATES_DIR}:/certs
       - ./docker/virtual-host.conf:/etc/apache2/sites-enabled/virtual-host.conf
-
-#  memcached:
-#    image: 'memcached:1.5'
-#    network_mode: bridge
-#    restart: always
-
-#networks:
-#  reverse-proxy:
-#    external: true
+      # IMPORTANT! The below configuration is for Mac only to enable Docker Sync Stack. Don't commit!
+      #- php-framework-local-sync:/var/www/html:nocopy
